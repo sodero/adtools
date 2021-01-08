@@ -1,7 +1,7 @@
-From 7881ff65fbc408ccd868595345f66fc282c42761 Mon Sep 17 00:00:00 2001
+From e53db4c2b30f3c3c30568bd3dc2e196da5ee669b Mon Sep 17 00:00:00 2001
 From: "ola.soder@axis.com" <ola.soder@axis.com>
 Date: Sat, 2 Jan 2021 17:22:55 +0100
-Subject: [PATCH 26/30] gcc10: Don't use poisoned define.
+Subject: [PATCH 26/31] gcc10: Don't use poisoned define.
 
 ---
  gcc/config/rs6000/amigaos.h | 3 ---
