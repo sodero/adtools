@@ -1,4 +1,4 @@
-From 652562fa04c2b85328c06b2038699e705dc18ea9 Mon Sep 17 00:00:00 2001
+From 846400ad1602791e1eb76d1911afe2d4e327acf3 Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Fri, 27 Apr 2018 22:48:18 +0200
 Subject: [PATCH 20/32] Rename lineartags to checktags.
@@ -13,7 +13,7 @@ or necessary.
  4 files changed, 8 insertions(+), 7 deletions(-)
 
 diff --git a/gcc/c/c-typeck.c b/gcc/c/c-typeck.c
-index ac9863a26bfb09269a09804b19e447d108253c7d..1c94cafa59ff00bc51d2f413a05f6a8fb87de6d7 100644
+index 5659f5b7f0681fdaeed3f4522c5e0184d17f738e..1a778e8b06cea57e52b568790f6b5b18e76c34eb 100644
 --- a/gcc/c/c-typeck.c
 +++ b/gcc/c/c-typeck.c
 @@ -3445,14 +3445,14 @@ convert_arguments (location_t loc, vec<location_t> arg_loc, tree typelist,

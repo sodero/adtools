@@ -1,4 +1,4 @@
-From 036b31e9ecb68100c330622345579522d2bf852d Mon Sep 17 00:00:00 2001
+From a4ed44b6029d26448e6d90798abfed36dabe101a Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Thu, 9 Jul 2015 06:54:37 +0200
 Subject: [PATCH 03/32] Disable .machine directive generation.
@@ -12,10 +12,10 @@ This reverts parts of a commit from 2015-03-03.
  1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/gcc/config/rs6000/rs6000.c b/gcc/config/rs6000/rs6000.c
-index c0cd56db2eb34a96fd6a71b59276ad8c3c69c1d2..aaf224f5384337663163274c5d7d0ba63f0d8036 100644
+index a5ca2d149098fe513a835cd4c6d851422c679901..26f134fb9c82a96731c035d39f14643da73d2951 100644
 --- a/gcc/config/rs6000/rs6000.c
 +++ b/gcc/config/rs6000/rs6000.c
-@@ -5546,15 +5546,13 @@ rs6000_file_start (void)
+@@ -5629,15 +5629,13 @@ rs6000_file_start (void)
  	putc ('\n', file);
      }
  

@@ -1,4 +1,4 @@
-From aee35788866376508033c4d224b5a8db24f426c7 Mon Sep 17 00:00:00 2001
+From a85cd4c2f28165f99181c50518d1e56315d81fb5 Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Wed, 4 Apr 2018 23:50:48 +0200
 Subject: [PATCH 14/32] Add custom implementation of various env-related
@@ -73,10 +73,10 @@ index 698c41fdd1927931cb6b408d24db199598d32d86..b34b9cb70584fc3d02d4935d8ed36463
  	else true; fi
  	if [ x"$(NOASANFLAG)" != x ]; then \
 diff --git a/libiberty/configure b/libiberty/configure
-index 6787af79fadd3050b81499dee806fb1e7a40f773..55210048581e360a03623fb69f61c05c5e30569c 100755
+index 7cbaca011bbc042bd035e9f3969c1b155b802afd..882dbd3576f9179c681a1c3a197573c50ac694ae 100755
 --- a/libiberty/configure
 +++ b/libiberty/configure
-@@ -6539,12 +6539,23 @@ if test -z "${setobjs}"; then
+@@ -6545,12 +6545,23 @@ if test -z "${setobjs}"; then
    *-*-android*)
      # On android, getpagesize is defined in unistd.h as a static inline
      # function, which AC_CHECK_FUNCS does not handle properly.

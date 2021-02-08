@@ -1,4 +1,4 @@
-From e53db4c2b30f3c3c30568bd3dc2e196da5ee669b Mon Sep 17 00:00:00 2001
+From dca8e0d2bd7c91d3781384b2cd9839402b2f5220 Mon Sep 17 00:00:00 2001
 From: "ola.soder@axis.com" <ola.soder@axis.com>
 Date: Sat, 2 Jan 2021 17:22:55 +0100
 Subject: [PATCH 26/32] gcc10: Don't use poisoned define.

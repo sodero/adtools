@@ -1,4 +1,4 @@
-From 84641e62c7a44fe5379dc0788463a039cf3f8eb4 Mon Sep 17 00:00:00 2001
+From b02fb01387938029a1ddbebac949a83abb087a8f Mon Sep 17 00:00:00 2001
 From: "ola.soder@axis.com" <ola.soder@axis.com>
 Date: Sat, 2 Jan 2021 22:07:45 +0100
 Subject: [PATCH 29/32] gcc10: Define CC1_SPEC.

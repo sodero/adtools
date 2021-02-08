@@ -1,4 +1,4 @@
-From 8ebfe20aa1d61f28c8f20c63743cf66f0c07b56d Mon Sep 17 00:00:00 2001
+From f816c59f944e49f24761ef9b1f697610652147c0 Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Wed, 4 Apr 2018 22:48:33 +0200
 Subject: [PATCH 13/32] Rerun make maint-deps in libiberty.

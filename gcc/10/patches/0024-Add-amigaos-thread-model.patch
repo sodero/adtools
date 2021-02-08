@@ -1,4 +1,4 @@
-From 4bfc8e42deff51731f95e6da26d07c9010623818 Mon Sep 17 00:00:00 2001
+From 26a7955a7a28c1e02c57e55cf48293c09834dafd Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Fri, 4 May 2018 18:22:24 +0200
 Subject: [PATCH 24/32] Add amigaos thread model.
@@ -169,7 +169,7 @@ index 0000000000000000000000000000000000000000..a3dd2195809c2ce1fbab8be854f3c987
 +$(ALL_EXECUTABLES) : override LDFLAGS += -athread=native -Wl,--gc-sections
 \ No newline at end of file
 diff --git a/gcc/configure b/gcc/configure
-index cd3d9516fceb3d6c7572f0cddd8823edb9f39ba1..d7d28c36fba7cc1a5590eaec98291ad72219cbba 100755
+index eb6061c1631968071a6754f193681f19fedbfb36..ae993e512ccda3b1fbd3302e3af891ec5ece8319 100755
 --- a/gcc/configure
 +++ b/gcc/configure
 @@ -12205,13 +12205,13 @@ case ${enable_threads} in
@@ -188,7 +188,7 @@ index cd3d9516fceb3d6c7572f0cddd8823edb9f39ba1..d7d28c36fba7cc1a5590eaec98291ad7
      echo "${enable_threads} is an unknown thread package" 1>&2
      exit 1
 diff --git a/gcc/configure.ac b/gcc/configure.ac
-index 0de3b4bf97b784464604e79102f3f691421e051b..6e47b395c78f890fd6613a04b1405caa8851b222 100644
+index 715fcba04822bd9fd02b81057706a1d9cc9914c5..ba41f847f4026cf608491637d606528eefcf7899 100644
 --- a/gcc/configure.ac
 +++ b/gcc/configure.ac
 @@ -1797,13 +1797,13 @@ case ${enable_threads} in
@@ -207,7 +207,7 @@ index 0de3b4bf97b784464604e79102f3f691421e051b..6e47b395c78f890fd6613a04b1405caa
      echo "${enable_threads} is an unknown thread package" 1>&2
      exit 1
 diff --git a/gcc/doc/invoke.texi b/gcc/doc/invoke.texi
-index 212c03947cf69c2d01619ba42297c46216e94960..5ad12d5551b83880b0b6bceaa3c4b37f4f698b99 100644
+index 03ffcfc800ecbb2e0aa96819ec80f461ce9aabb8..3953068db043a902b71e15b21ecc8c255831f3bd 100644
 --- a/gcc/doc/invoke.texi
 +++ b/gcc/doc/invoke.texi
 @@ -1387,13 +1387,13 @@ See RS/6000 and PowerPC Options.
@@ -225,7 +225,7 @@ index 212c03947cf69c2d01619ba42297c46216e94960..5ad12d5551b83880b0b6bceaa3c4b37f
  @gccoptlist{-fcall-saved-@var{reg}  -fcall-used-@var{reg} @gol
  -ffixed-@var{reg}  -fexceptions @gol
  -fnon-call-exceptions  -fdelete-dead-exceptions  -funwind-tables @gol
-@@ -17391,12 +17391,19 @@ Compile for GCN5 Vega 20 devices (gfx906).
+@@ -17428,12 +17428,19 @@ Compile for GCN5 Vega 20 devices (gfx906).
  Specify how many @var{bytes} of stack space will be requested for each GPU
  thread (wave-front).  Beware that there may be many threads and limited memory
  available.  The size of the stack allocation may also have an impact on

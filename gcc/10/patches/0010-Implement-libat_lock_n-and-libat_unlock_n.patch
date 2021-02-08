@@ -1,4 +1,4 @@
-From 7885f937cb909e6568f0441de168108191522459 Mon Sep 17 00:00:00 2001
+From 8452765affaa174aecaf99b97f281f6390c835c7 Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Wed, 23 May 2018 10:54:19 +0200
 Subject: [PATCH 10/32] Implement libat_lock_n() and libat_unlock_n().
