@@ -1,7 +1,7 @@
-From 26a7955a7a28c1e02c57e55cf48293c09834dafd Mon Sep 17 00:00:00 2001
+From e59621574d851dfffcb3a866195fe9e310fa404c Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Fri, 4 May 2018 18:22:24 +0200
-Subject: [PATCH 24/32] Add amigaos thread model.
+Subject: [PATCH 24/33] Add amigaos thread model.
 
 It is work in progress.
 ---
@@ -20,8 +20,8 @@ It is work in progress.
  libgcc/gthr-amigaos-posix.c    |  233 +++++++++
  libgcc/gthr-amigaos-single.c   |  141 ++++++
  libgcc/gthr-amigaos.h          |  347 ++++++++++++++
- libstdc++-v3/configure         |   15 +-
- 16 files changed, 1812 insertions(+), 12 deletions(-)
+ libstdc++-v3/configure         |    1 +
+ 16 files changed, 1805 insertions(+), 5 deletions(-)
  create mode 100644 gcc/config/rs6000/x-amigaos
  create mode 100644 libgcc/gthr-amigaos-asserts.h
  create mode 100644 libgcc/gthr-amigaos-native.c
@@ -169,10 +169,10 @@ index 0000000000000000000000000000000000000000..a3dd2195809c2ce1fbab8be854f3c987
 +$(ALL_EXECUTABLES) : override LDFLAGS += -athread=native -Wl,--gc-sections
 \ No newline at end of file
 diff --git a/gcc/configure b/gcc/configure
-index eb6061c1631968071a6754f193681f19fedbfb36..ae993e512ccda3b1fbd3302e3af891ec5ece8319 100755
+index 8fe9c91fd7c2d5681d5fb9d1150b7027b9c6bbf1..2c9fb39d5394ebed0e91c03e8ca8a6f345c240bf 100755
 --- a/gcc/configure
 +++ b/gcc/configure
-@@ -12205,13 +12205,13 @@ case ${enable_threads} in
+@@ -12210,13 +12210,13 @@ case ${enable_threads} in
      target_thread_file='single'
      ;;
    yes)
@@ -188,10 +188,10 @@ index eb6061c1631968071a6754f193681f19fedbfb36..ae993e512ccda3b1fbd3302e3af891ec
      echo "${enable_threads} is an unknown thread package" 1>&2
      exit 1
 diff --git a/gcc/configure.ac b/gcc/configure.ac
-index 715fcba04822bd9fd02b81057706a1d9cc9914c5..ba41f847f4026cf608491637d606528eefcf7899 100644
+index 84dceb8074ab4615316e09f1f339ed93eca6d6e9..10f5f85f76f553474b71ff793b829ff2997fe236 100644
 --- a/gcc/configure.ac
 +++ b/gcc/configure.ac
-@@ -1797,13 +1797,13 @@ case ${enable_threads} in
+@@ -1802,13 +1802,13 @@ case ${enable_threads} in
      target_thread_file='single'
      ;;
    yes)
@@ -207,10 +207,10 @@ index 715fcba04822bd9fd02b81057706a1d9cc9914c5..ba41f847f4026cf608491637d606528e
      echo "${enable_threads} is an unknown thread package" 1>&2
      exit 1
 diff --git a/gcc/doc/invoke.texi b/gcc/doc/invoke.texi
-index 03ffcfc800ecbb2e0aa96819ec80f461ce9aabb8..3953068db043a902b71e15b21ecc8c255831f3bd 100644
+index 0e5f96587968e925eb81d16a8f99dd9e46aa768d..15d9ef151f350a6655f202dfd04a79ddefdca159 100644
 --- a/gcc/doc/invoke.texi
 +++ b/gcc/doc/invoke.texi
-@@ -1387,13 +1387,13 @@ See RS/6000 and PowerPC Options.
+@@ -1389,13 +1389,13 @@ See RS/6000 and PowerPC Options.
  
  @emph{zSeries Options}
  See S/390 and zSeries Options.
@@ -225,7 +225,7 @@ index 03ffcfc800ecbb2e0aa96819ec80f461ce9aabb8..3953068db043a902b71e15b21ecc8c25
  @gccoptlist{-fcall-saved-@var{reg}  -fcall-used-@var{reg} @gol
  -ffixed-@var{reg}  -fexceptions @gol
  -fnon-call-exceptions  -fdelete-dead-exceptions  -funwind-tables @gol
-@@ -17428,12 +17428,19 @@ Compile for GCN5 Vega 20 devices (gfx906).
+@@ -17465,12 +17465,19 @@ Compile for GCN5 Vega 20 devices (gfx906).
  Specify how many @var{bytes} of stack space will be requested for each GPU
  thread (wave-front).  Beware that there may be many threads and limited memory
  available.  The size of the stack allocation may also have an impact on
@@ -2056,10 +2056,10 @@ index 0000000000000000000000000000000000000000..123d3512abed0a43a8c019bbce0d83f0
 +
 +#endif /* ! GCC_GTHR_AMIGAOS_H */
 diff --git a/libstdc++-v3/configure b/libstdc++-v3/configure
-index abbf6d0cfeeb6d0829cff5285d521f294af8bb6f..0b225501887c2d0aa3c3bb39f363420d4b6da6d6 100755
+index 449918a6297cc0ba519165d377667bb5c19e8305..66fc04319848b72978faffc8feb9a0f6b40852a6 100755
 --- a/libstdc++-v3/configure
 +++ b/libstdc++-v3/configure
-@@ -15633,12 +15633,13 @@ $as_echo_n "checking for thread model used by GCC... " >&6; }
+@@ -15635,12 +15635,13 @@ $as_echo_n "checking for thread model used by GCC... " >&6; }
    target_thread_file=`$CXX -v 2>&1 | sed -n 's/^Thread model: //p'`
    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $target_thread_file" >&5
  $as_echo "$target_thread_file" >&6; }
@@ -2073,111 +2073,6 @@ index abbf6d0cfeeb6d0829cff5285d521f294af8bb6f..0b225501887c2d0aa3c3bb39f363420d
      mipssde)	thread_header=config/mips/gthr-mipssde.h ;;
      posix)	thread_header=gthr-posix.h ;;
      rtems)	thread_header=config/gthr-rtems.h ;;
-@@ -15854,13 +15855,13 @@ $as_echo "$glibcxx_cv_atomic_long_long" >&6; }
-   # Compile unoptimized.
-   CXXFLAGS='-O0 -S'
- 
-   # Fake what AC_TRY_COMPILE does.
- 
-     cat > conftest.$ac_ext << EOF
--#line 15860 "configure"
-+#line 15861 "configure"
- int main()
- {
-   typedef bool atomic_type;
-   atomic_type c1;
-   atomic_type c2;
-   atomic_type c3(0);
-@@ -15889,13 +15890,13 @@ $as_echo_n "checking for atomic builtins for bool... " >&6; }
-     fi
-     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $glibcxx_cv_atomic_bool" >&5
- $as_echo "$glibcxx_cv_atomic_bool" >&6; }
-     rm -f conftest*
- 
-     cat > conftest.$ac_ext << EOF
--#line 15895 "configure"
-+#line 15896 "configure"
- int main()
- {
-   typedef short atomic_type;
-   atomic_type c1;
-   atomic_type c2;
-   atomic_type c3(0);
-@@ -15924,13 +15925,13 @@ $as_echo_n "checking for atomic builtins for short... " >&6; }
-     fi
-     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $glibcxx_cv_atomic_short" >&5
- $as_echo "$glibcxx_cv_atomic_short" >&6; }
-     rm -f conftest*
- 
-     cat > conftest.$ac_ext << EOF
--#line 15930 "configure"
-+#line 15931 "configure"
- int main()
- {
-   // NB: _Atomic_word not necessarily int.
-   typedef int atomic_type;
-   atomic_type c1;
-   atomic_type c2;
-@@ -15960,13 +15961,13 @@ $as_echo_n "checking for atomic builtins for int... " >&6; }
-     fi
-     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $glibcxx_cv_atomic_int" >&5
- $as_echo "$glibcxx_cv_atomic_int" >&6; }
-     rm -f conftest*
- 
-     cat > conftest.$ac_ext << EOF
--#line 15966 "configure"
-+#line 15967 "configure"
- int main()
- {
-   typedef long long atomic_type;
-   atomic_type c1;
-   atomic_type c2;
-   atomic_type c3(0);
-@@ -16113,13 +16114,13 @@ $as_echo "mutex" >&6; }
- 
- 
-   # Fake what AC_TRY_COMPILE does, without linking as this is
-   # unnecessary for this test.
- 
-     cat > conftest.$ac_ext << EOF
--#line 16119 "configure"
-+#line 16120 "configure"
- int main()
- {
-   _Decimal32 d1;
-   _Decimal64 d2;
-   _Decimal128 d3;
-   return 0;
-@@ -16155,13 +16156,13 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
- 
- 
-   # Fake what AC_TRY_COMPILE does, without linking as this is
-   # unnecessary for this test.
- 
-     cat > conftest.$ac_ext << EOF
--#line 16161 "configure"
-+#line 16162 "configure"
- template<typename T1, typename T2>
-   struct same
-   { typedef T2 type; };
- 
- template<typename T>
-   struct same<T, T>;
-@@ -16189,13 +16190,13 @@ $as_echo "#define _GLIBCXX_USE_INT128 1" >>confdefs.h
-     fi
-     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_int128" >&5
- $as_echo "$enable_int128" >&6; }
-     rm -f conftest*
- 
-     cat > conftest.$ac_ext << EOF
--#line 16195 "configure"
-+#line 16196 "configure"
- template<typename T1, typename T2>
-   struct same
-   { typedef T2 type; };
- 
- template<typename T>
-   struct same<T, T>;
 -- 
 2.11.0
 

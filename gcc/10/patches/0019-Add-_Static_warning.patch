@@ -1,7 +1,7 @@
-From 5f26fc5ad26a1bcc46bb56e5a99f5c78a138feac Mon Sep 17 00:00:00 2001
+From 23398fdb5961282c90959207a50357c14ee1860f Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Tue, 24 Apr 2018 22:46:21 +0200
-Subject: [PATCH 19/32] Add _Static_warning().
+Subject: [PATCH 19/33] Add _Static_warning().
 
 This acts very similar to _Static_assert() but produces a warning
 rather than an compiler error.
@@ -13,7 +13,7 @@ rather than an compiler error.
  4 files changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/gcc/c-family/c-common.c b/gcc/c-family/c-common.c
-index 20258c331af031f4b1d863ee410c357e7bb7782c..9ed63fb22963804aa5f5747ef41efd94d159d253 100644
+index 064c2f263f03b52e953d32d06974e45cc4fd157b..5f88b849d8597d9dae14a1fa6872498d403ab365 100644
 --- a/gcc/c-family/c-common.c
 +++ b/gcc/c-family/c-common.c
 @@ -356,12 +356,13 @@ const struct c_common_resword c_common_reswords[] =
@@ -31,7 +31,7 @@ index 20258c331af031f4b1d863ee410c357e7bb7782c..9ed63fb22963804aa5f5747ef41efd94
    { "__PRETTY_FUNCTION__", RID_PRETTY_FUNCTION_NAME, 0 },
    { "__alignof",	RID_ALIGNOF,	0 },
 diff --git a/gcc/c-family/c-common.h b/gcc/c-family/c-common.h
-index 3e26ca034ca36fc673e285faa72b83fdc2bfacd9..f69bb9096dbbf31961f748934313090ef36e4f79 100644
+index ed39b7764bfe16918f1879549026721cbf6a78f9..49a4eb5674722ddcdc57960b8baa11a2a7b15dc2 100644
 --- a/gcc/c-family/c-common.h
 +++ b/gcc/c-family/c-common.h
 @@ -102,12 +102,13 @@ enum rid
@@ -49,7 +49,7 @@ index 3e26ca034ca36fc673e285faa72b83fdc2bfacd9..f69bb9096dbbf31961f748934313090e
    RID_FLOAT32,
    RID_FLOAT64,
 diff --git a/gcc/c/c-parser.c b/gcc/c/c-parser.c
-index f9df8ac3ae380b8ae1886493c7adebbab63ea6e3..27f5ad83d8eef395ac735d845a95f8ceaac751d3 100644
+index 1e9fe21e3cf80790d70081e518f266d4d3d497af..9e68fbab05edfec41c8a0f59a09ff438c659ad8d 100644
 --- a/gcc/c/c-parser.c
 +++ b/gcc/c/c-parser.c
 @@ -831,13 +831,13 @@ c_token_starts_declspecs (c_token *token)
@@ -104,7 +104,7 @@ index f9df8ac3ae380b8ae1886493c7adebbab63ea6e3..27f5ad83d8eef395ac735d845a95f8ce
    else
      pedwarn_c99 (assert_loc, OPT_Wpedantic,
 diff --git a/gcc/cp/parser.c b/gcc/cp/parser.c
-index ff0b2ed1ff0fb05db9e201eee0cfdfd661616b7f..7e6969af85f09bdaed5a1fd027fe6318c9abe445 100644
+index 1f4a28ff7c0c14c8aab08da07dc0bc3024086531..4e2dc9b37f7972beda895b56c0b05913b7ff5619 100644
 --- a/gcc/cp/parser.c
 +++ b/gcc/cp/parser.c
 @@ -151,12 +151,13 @@ enum required_token {
@@ -121,7 +121,7 @@ index ff0b2ed1ff0fb05db9e201eee0cfdfd661616b7f..7e6969af85f09bdaed5a1fd027fe6318
    RT_TEMPLATE, /* template */
    RT_NAMESPACE, /* namespace */
    RT_USING, /* using */
-@@ -13555,13 +13556,13 @@ cp_parser_block_declaration (cp_parser *parser,
+@@ -13566,13 +13567,13 @@ cp_parser_block_declaration (cp_parser *parser,
        cp_parser_skip_to_end_of_statement (parser);
        /* If the next token is now a `;', consume it.  */
        if (cp_lexer_next_token_is (parser->lexer, CPP_SEMICOLON))

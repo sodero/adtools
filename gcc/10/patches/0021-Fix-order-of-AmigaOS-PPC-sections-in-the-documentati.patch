@@ -1,7 +1,7 @@
-From 948284a5c556c4f8dac1f1b2996522e6969a90f2 Mon Sep 17 00:00:00 2001
+From 6f97164c6fae5e41cd9dd02e4cabc28cdcaa84a3 Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Sat, 28 Apr 2018 08:09:58 +0200
-Subject: [PATCH 21/32] Fix order of AmigaOS PPC sections in the documentation.
+Subject: [PATCH 21/33] Fix order of AmigaOS PPC sections in the documentation.
 
 ---
  gcc/doc/extend.texi |  4 ++--
@@ -9,10 +9,10 @@ Subject: [PATCH 21/32] Fix order of AmigaOS PPC sections in the documentation.
  2 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/gcc/doc/extend.texi b/gcc/doc/extend.texi
-index 14f2e6bc4a915d7cbe34eb1acb1e56b15c84b402..8e2d638894ff0a0af50138126ef50026512fe4c4 100644
+index 5ccde910fc4c1b9320a09f55f69898120ea946a9..9466c857b276d1eab3cd7117cc7dcf102cbb2acd 100644
 --- a/gcc/doc/extend.texi
 +++ b/gcc/doc/extend.texi
-@@ -7873,15 +7873,15 @@ For full documentation of the struct attributes please see the
+@@ -7893,15 +7893,15 @@ For full documentation of the struct attributes please see the
  documentation in @ref{x86 Variable Attributes}.
  
  @cindex @code{altivec} variable attribute, PowerPC
@@ -31,10 +31,10 @@ index 14f2e6bc4a915d7cbe34eb1acb1e56b15c84b402..8e2d638894ff0a0af50138126ef50026
  
  This attribute forces access to a variable in code compiled with
 diff --git a/gcc/doc/invoke.texi b/gcc/doc/invoke.texi
-index 14e033623971cd4eac4eae8412b07f2e1c30a8b3..03ffcfc800ecbb2e0aa96819ec80f461ce9aabb8 100644
+index 690266503976613fe712b16f03c39a1bb4508383..0e5f96587968e925eb81d16a8f99dd9e46aa768d 100644
 --- a/gcc/doc/invoke.texi
 +++ b/gcc/doc/invoke.texi
-@@ -1385,13 +1385,13 @@ See RS/6000 and PowerPC Options.
+@@ -1387,13 +1387,13 @@ See RS/6000 and PowerPC Options.
  -mtarget-align  -mno-target-align @gol
  -mlongcalls  -mno-longcalls}
  
@@ -49,7 +49,7 @@ index 14e033623971cd4eac4eae8412b07f2e1c30a8b3..03ffcfc800ecbb2e0aa96819ec80f461
  @item Code Generation Options
  @xref{Code Gen Options,,Options for Code Generation Conventions}.
  @gccoptlist{-fcall-saved-@var{reg}  -fcall-used-@var{reg} @gol
-@@ -16760,13 +16760,13 @@ platform.
+@@ -16785,13 +16785,13 @@ platform.
  * VMS Options::
  * VxWorks Options::
  * x86 Options::
@@ -64,7 +64,7 @@ index 14e033623971cd4eac4eae8412b07f2e1c30a8b3..03ffcfc800ecbb2e0aa96819ec80f461
  @node AArch64 Options
  @subsection AArch64 Options
  @cindex AArch64 Options
-@@ -30379,15 +30379,15 @@ These options are defined for Xstormy16:
+@@ -30434,15 +30434,15 @@ These options are defined for Xstormy16:
  @table @gcctabopt
  @item -msim
  @opindex msim

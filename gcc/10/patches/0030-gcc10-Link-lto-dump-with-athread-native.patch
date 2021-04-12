@@ -1,7 +1,7 @@
-From 2f44466f446b3a8c9192c683ef31b59251225529 Mon Sep 17 00:00:00 2001
+From 32ce32a050ce146a80b64da4495e2bb9c5b8246d Mon Sep 17 00:00:00 2001
 From: "ola.soder@axis.com" <ola.soder@axis.com>
 Date: Fri, 8 Jan 2021 01:02:33 +0100
-Subject: [PATCH 30/32] gcc10: Link lto-dump with -athread=native.
+Subject: [PATCH 30/33] gcc10: Link lto-dump with -athread=native.
 
 ---
  gcc/config/rs6000/x-amigaos | 3 ++-

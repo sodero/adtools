@@ -1,17 +1,17 @@
-From f455431356c5cfe8f96d4b23084b50a2eb06abd2 Mon Sep 17 00:00:00 2001
+From b818ed0fcd076d014203e07b8bae9dd614d88964 Mon Sep 17 00:00:00 2001
 From: "ola.soder@axis.com" <ola.soder@axis.com>
 Date: Sat, 2 Jan 2021 17:25:51 +0100
-Subject: [PATCH 27/32] gcc10: Remove unused variable.
+Subject: [PATCH 27/33] gcc10: Remove unused variable.
 
 ---
  gcc/c/c-parser.c | 3 ---
  1 file changed, 3 deletions(-)
 
 diff --git a/gcc/c/c-parser.c b/gcc/c/c-parser.c
-index 27f5ad83d8eef395ac735d845a95f8ceaac751d3..de8257e4794c8379a74e3792c03db99421c850f9 100644
+index 9e68fbab05edfec41c8a0f59a09ff438c659ad8d..e7c9c5ddfb4824284ab2e9bb2bf995720ba6107a 100644
 --- a/gcc/c/c-parser.c
 +++ b/gcc/c/c-parser.c
-@@ -12606,28 +12606,25 @@ c_parser_pragma (c_parser *parser, enum pragma_context context, bool *if_p)
+@@ -12655,28 +12655,25 @@ c_parser_pragma (c_parser *parser, enum pragma_context context, bool *if_p)
     * file.
     */
    extern int was_tagtypepragma;

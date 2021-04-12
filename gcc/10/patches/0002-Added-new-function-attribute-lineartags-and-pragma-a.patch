@@ -1,7 +1,7 @@
-From 5a833135474c38063c073c18f987eb32ffabaed5 Mon Sep 17 00:00:00 2001
+From 4d988078854a32b86d901305ff753fb332238605 Mon Sep 17 00:00:00 2001
 From: Sebastian Bauer <mail@sebastianbauer.info>
 Date: Fri, 14 Nov 2014 20:03:56 +0100
-Subject: [PATCH 02/32] Added new function attribute "lineartags" and pragma
+Subject: [PATCH 02/33] Added new function attribute "lineartags" and pragma
  "amigaos tagtype".
 
 Functions that have the lineartags attribute are assumed to be functions
@@ -35,7 +35,7 @@ functions.
  5 files changed, 198 insertions(+), 1 deletion(-)
 
 diff --git a/gcc/c-family/c-pragma.c b/gcc/c-family/c-pragma.c
-index 7c35741745bd21879ecfb583a3a544da50baf0ac..ef6e1cabdcb857dda424cb23b557fccfc0aa8e22 100644
+index 3c19a85e9f7d4577b4c14cd5abe9a4d6df00d12f..4b5c7539d911fd1c7a31a5cf3ddbcf21092ab2d8 100644
 --- a/gcc/c-family/c-pragma.c
 +++ b/gcc/c-family/c-pragma.c
 @@ -1152,12 +1152,21 @@ handle_pragma_message (cpp_reader *ARG_UNUSED(dummy))
@@ -75,7 +75,7 @@ index 7c35741745bd21879ecfb583a3a544da50baf0ac..ef6e1cabdcb857dda424cb23b557fccf
    global_sso = default_sso;
    c_register_pragma (0, "scalar_storage_order", 
 diff --git a/gcc/c/c-parser.c b/gcc/c/c-parser.c
-index ae354e6af66ac0297133143b6a250961463adb00..f9df8ac3ae380b8ae1886493c7adebbab63ea6e3 100644
+index 5176549acafa2b0c25be4bb5e75e8c67750b1962..1e9fe21e3cf80790d70081e518f266d4d3d497af 100644
 --- a/gcc/c/c-parser.c
 +++ b/gcc/c/c-parser.c
 @@ -95,12 +95,74 @@ set_c_expr_source_range (c_expr *expr,
@@ -169,7 +169,7 @@ index ae354e6af66ac0297133143b6a250961463adb00..f9df8ac3ae380b8ae1886493c7adebba
  	  if (!typespec_ok)
  	    goto out;
  	  attrs_ok = true;
-@@ -12257,12 +12322,32 @@ c_parser_pragma_unroll (c_parser *parser)
+@@ -12306,12 +12371,32 @@ c_parser_pragma_unroll (c_parser *parser)
      }
  
    c_parser_skip_to_pragma_eol (parser);
@@ -202,7 +202,7 @@ index ae354e6af66ac0297133143b6a250961463adb00..f9df8ac3ae380b8ae1886493c7adebba
     true if we actually parsed such a pragma.  */
  
  static bool
-@@ -12505,12 +12590,56 @@ c_parser_pragma (c_parser *parser, enum pragma_context context, bool *if_p)
+@@ -12554,12 +12639,56 @@ c_parser_pragma (c_parser *parser, enum pragma_context context, bool *if_p)
        break;
      }
  
@@ -260,10 +260,10 @@ index ae354e6af66ac0297133143b6a250961463adb00..f9df8ac3ae380b8ae1886493c7adebba
    c_parser_skip_to_pragma_eol (parser);
  
 diff --git a/gcc/c/c-typeck.c b/gcc/c/c-typeck.c
-index a29105255fc33772671dcef80685c818f585b152..5659f5b7f0681fdaeed3f4522c5e0184d17f738e 100644
+index ac420bb7c4d3546885de63a14ec8f8826b47bf9f..5cf86f2c26902751c9f2d4e6e6c2b83ea97495f8 100644
 --- a/gcc/c/c-typeck.c
 +++ b/gcc/c/c-typeck.c
-@@ -3445,12 +3445,14 @@ convert_arguments (location_t loc, vec<location_t> arg_loc, tree typelist,
+@@ -3489,12 +3489,14 @@ convert_arguments (location_t loc, vec<location_t> arg_loc, tree typelist,
    bool error_args = false;
    const bool type_generic = fundecl
      && lookup_attribute ("type generic", TYPE_ATTRIBUTES (TREE_TYPE (fundecl)));
@@ -278,7 +278,7 @@ index a29105255fc33772671dcef80685c818f585b152..5659f5b7f0681fdaeed3f4522c5e0184
    if (TREE_CODE (function) == ADDR_EXPR
        && TREE_CODE (TREE_OPERAND (function, 0)) == FUNCTION_DECL)
      function = TREE_OPERAND (function, 0);
-@@ -3506,13 +3508,13 @@ convert_arguments (location_t loc, vec<location_t> arg_loc, tree typelist,
+@@ -3550,13 +3552,13 @@ convert_arguments (location_t loc, vec<location_t> arg_loc, tree typelist,
  	  }
      }
  
@@ -293,7 +293,7 @@ index a29105255fc33772671dcef80685c818f585b152..5659f5b7f0681fdaeed3f4522c5e0184
         values && values->iterate (parmnum, &val);
         ++parmnum)
      {
-@@ -3607,12 +3609,34 @@ convert_arguments (location_t loc, vec<location_t> arg_loc, tree typelist,
+@@ -3651,12 +3653,34 @@ convert_arguments (location_t loc, vec<location_t> arg_loc, tree typelist,
  	      {
  		promote_float_arg = false;
  		break;
